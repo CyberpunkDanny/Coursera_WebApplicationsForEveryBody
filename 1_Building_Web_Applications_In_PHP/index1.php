@@ -1,5 +1,35 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+<meta charset = "UTF-8">
+ 	<title>PHP</title>
+</head>
 
+<body>
+	<p>Guessing Game</p>
+	<form> <!-- Default is GET. Use <form method = "post" for POST -->
+		<fieldset>
+		<legend>GET Request Example</legend>
+		<label> Input Guess: <input type = "text" name = "guess" id = "guess"/> </label>
+		</fieldset>
+		<fieldset>
+		<legend> Personal Info </legend> 
+		
+		<label for = "fname"> First Name </label>
+		<input type = "text" id = "fname" name = "fname"> 
+
+		<label for = "lname"> Last Name </label>
+		<input type = "text" id = "lname" name = "lname"> 
+		</fieldset>
+		<br/>
+		<input type = "submit" value = "Click Here!" />
+	</form>
 	<?php
+	echo "<pre>";
+		if($_GET)
+		print_r($_GET);
+	echo "</pre>";
+	/*
 
 	$stuff = array("Hi", "There");
 	for($i=0; $i<count($stuff); $i++)
@@ -120,5 +150,8 @@
 	echo "<br/>";
 	print_r($stuff_KV);
 	echo "</pre>";
-	
+	*/
 	?>
+</body>
+
+</html>
