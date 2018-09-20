@@ -1,0 +1,81 @@
+CREATE DATABASE People DEFAULT CHARACTER SET utf8;
+
+CREATE TABLE Users(
+	user_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    name VARCHAR(128),
+    email VARCHAR(128),
+    PRIMARY KEY(user_id)
+);
+
+INSERT INTO Users(name, email) VALUES("Divyateja", "divyatejadanny@gmail.com");
+INSERT INTO Users(name, email) VALUES("Deepika", "deepika.singh@gmail.com");
+INSERT INTO Users(user_id, name, email) VALUES(3, "Saurabh", "saurabh.goyal@gmail.com");
+INSERT INTO Users(name, email) VALUES("Kanchan", "kanchan.tanti@gmail.com");
+
+
+
+
+
+
+
+CREATE TABLE Ages(
+	name VARCHAR(128),
+    age INTEGER
+);
+DELETE FROM Ages;
+
+INSERT INTO Ages (name, age) VALUES ('Zahra', 34);
+INSERT INTO Ages (name, age) VALUES ('Olufunke', 23);
+INSERT INTO Ages (name, age) VALUES ('Choire', 38);
+INSERT INTO Ages (name, age) VALUES ('Makenna', 32);
+INSERT INTO Ages (name, age) VALUES ('Ula', 16);
+INSERT INTO Ages (name, age) VALUES ('Garren', 40);
+
+
+SELECT sha1(CONCAT(name,age)) AS X FROM Ages ORDER BY X;
+
+
+CREATE DATABASE Week_1_SQL;
+
+USE Week_1_SQL;
+
+CREATE TABLE Users(
+	name VARCHAR(128),
+    emp_code INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+    city VARCHAR(128),
+    PRIMARY KEY(emp_code)
+);
+
+INSERT INTO Users(name, city) VALUES("Divyateja", "Vizag");
+INSERT INTO Users(name, city) VALUES("Saurabh", "Faridabad");
+INSERT INTO Users(name, emp_code, city) VALUES("Deepika", 3, "Jalandhar");
+INSERT INTO Users(name, city) VALUES("Kanchan", "Patna");
+INSERT INTO Users(name, emp_code, city) VALUES("Abhishek", 6, "Lucknow");
+
+DELETE FROM Users WHERE emp_code = 6;
+UPDATE Users SET emp_code = 5 WHERE name = "Deepika";
+
+SELECT * FROM Users WHERE city = "Jalandhar";
+SELECT name, city FROM Users ORDER BY emp_code DESC; 
+SELECT * FROM Users LIMIT 2;
+SELECT * FROM Users LIMIT 2,2;
+SELECT COUNT(*) FROM Users WHERE emp_code<4;
+
+------Assignment------
+
+CREATE TABLE Ages(
+	name VARCHAR(128),
+    age INTEGER
+);
+
+DELETE FROM Ages;
+INSERT INTO Ages (name, age) VALUES ('Zahra', 34);
+INSERT INTO Ages (name, age) VALUES ('Olufunke', 23);
+INSERT INTO Ages (name, age) VALUES ('Choire', 38);
+INSERT INTO Ages (name, age) VALUES ('Makenna', 32);
+INSERT INTO Ages (name, age) VALUES ('Ula', 16);
+INSERT INTO Ages (name, age) VALUES ('Garren', 40);
+
+SELECT sha1(CONCAT(name, age)) AS X FROM Ages ORDER BY X;
+
+----End of Assignment----
