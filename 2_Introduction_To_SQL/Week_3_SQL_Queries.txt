@@ -1,0 +1,64 @@
+CREATE DATABASE music_gen;
+
+USE music_gen;
+
+CREATE TABLE artist(
+	artist_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+    artist_name VARCHAR(128),
+    
+	PRIMARY KEY(artist_id),
+   	INDEX USING BTREE(artist_name) 
+);
+
+CREATE TABLE genre(
+	genre_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+    genre_name VARCHAR(128),
+	
+    PRIMARY KEY(genre_id),
+    INDEX USING BTREE(genre_name)
+)
+
+CREATE TABLE album(
+	album_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+    album_name VARCHAR(128),
+    
+	artist_id INTEGER UNSIGNED,
+    
+	PRIMARY KEY(album_id),
+    INDEX USING BTREE(album_name),
+    CONSTRAINT FOREIGN KEY(artist_id) REFERENCES artist (artist_id) ON DELETE CASCADE ON UPDATE CASCADE
+);		
+
+CREATE TABLE track(
+	track_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+    track_title VARCHAR(128),
+    rating INTEGER UNSIGNED,
+    length FLOAT UNSIGNED,
+    playCount INTEGER UNSIGNED,
+    
+	album_id INTEGER UNSIGNED,
+    artist_id INTEGER UNSIGNED,
+    genre_id INTEGER UNSIGNED,
+    
+	PRIMARY KEY(track_id),
+    INDEX USING BTREE(track_title),
+    CONSTRAINT FOREIGN KEY(album_id) REFERENCES album(album_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT FOREIGN KEY(artist_id) REFERENCES artist(artist_id) ON DELETE CASCADE ON UPDATE CASCADE, 
+    CONSTRAINT FOREIGN KEY(genre_id) REFERENCES genre(genre_id) ON DELETE CASCADE ON UPDATE CASCADE
+);	
+
+INSERT INTO artist(artist_name) VALUES("Led Zepplin");
+INSERT INTO artist(artist_name) VALUES("AC/DC");
+
+INSERT INTO genre(genre_name) VALUES("Rock");
+INSERT INTO genre(genre_name) VALUES("Metal");
+INSERT INTO genre(genre_name) VALUES("Pop");
+INSERT INTO genre(genre_name) VALUES("Jazz");
+
+INSERT INTO album(album_name, artist_id) VALUES ("Who Made Who", 2);
+INSERT INTO album(album_name, artist_id) VALUES ("IV", 1);
+
+INSERT INTO track(track_title, rating, length, playCount, album_id, artist_id, genre_id) VALUES("Black Dog", 5, 297, 0, 2, 1, 1);
+INSERT INTO track(track_title, rating, length, playCount, album_id, artist_id, genre_id) VALUES("Stairway", 5, 482, 0, 2, 1, 1);
+INSERT INTO track(track_title, rating, length, playCount, album_id, artist_id, genre_id) VALUES("About to Rock", 4, 313, 0, 1, 2, 2);
+INSERT INTO track(track_title, rating, length, playCount, album_id, artist_id, genre_id) VALUES("Who is he", 5, 207, 0, 1, 2, 2);
