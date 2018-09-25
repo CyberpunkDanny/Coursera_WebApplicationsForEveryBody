@@ -62,3 +62,82 @@ INSERT INTO track(track_title, rating, length, playCount, album_id, artist_id, g
 INSERT INTO track(track_title, rating, length, playCount, album_id, artist_id, genre_id) VALUES("Stairway", 5, 482, 0, 2, 1, 1);
 INSERT INTO track(track_title, rating, length, playCount, album_id, artist_id, genre_id) VALUES("About to Rock", 4, 313, 0, 1, 2, 2);
 INSERT INTO track(track_title, rating, length, playCount, album_id, artist_id, genre_id) VALUES("Who is he", 5, 207, 0, 1, 2, 2);
+
+
+----ASSIGNMENT----
+
+CREATE DATABASE music DEFAULT CHARACTER SET utf8;
+
+USE music;
+
+CREATE TABLE artist(
+	artist_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+    artist_name VARCHAR(128),
+    PRIMARY KEY(artist_id)
+);
+
+CREATE TABLE genre(
+	genre_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+    genre_type VARCHAR(128),
+    PRIMARY KEY(genre_id)
+);
+
+
+CREATE TABLE album(
+	album_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+    album_name VARCHAR(128),
+    artist_id INTEGER UNSIGNED,
+    PRIMARY KEY(album_id),
+    CONSTRAINT FOREIGN KEY(artist_id) REFERENCES artist(artist_id) ON DELETE CASCADE ON UPDATE CASCADE    
+);
+
+
+CREATE TABLE track(
+	track_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+    track_title VARCHAR(128),
+    track_rating INTEGER UNSIGNED,
+    track_len INTEGER UNSIGNED,
+    track_playCount INTEGER UNSIGNED,
+    album_id INTEGER UNSIGNED,
+    genre_id INTEGER UNSIGNED,
+    PRIMARY KEY(track_id),
+    CONSTRAINT FOREIGN KEY(album_id) REFERENCES album(album_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT FOREIGN KEY(genre_id) REFERENCES genre(genre_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+INSERT INTO genre(genre_type) VALUES("Rock");
+INSERT INTO genre(genre_type) VALUES("Metal");
+INSERT INTO genre(genre_type) VALUES("Jazz");
+INSERT INTO genre(genre_type) VALUES("Pop");
+
+INSERT INTO artist(artist_name) VALUES("AC/DC");
+INSERT INTO artist(artist_name) VALUES("Led Zepplin");
+INSERT INTO artist(artist_name) VALUES("Black Sabbath");
+
+INSERT INTO album(album_id, album_name, artist_id) VALUES(1, "Who Made Who", 1);
+INSERT INTO album(album_id, album_name, artist_id) VALUES(2, "IV", 2);
+INSERT INTO album(album_id, album_name, artist_id) VALUES(3, "Paranoid", 3);
+INSERT INTO album(album_id, album_name, artist_id) VALUES(4, "America", 1);
+INSERT INTO album(album_id, album_name, artist_id) VALUES(5, "Altan", 3);
+
+.....INSERT INTO track........(20)
+
+SELECT COUNT(*) FROM track;
+SELECT COUNT(*) FROM album;
+SELECT COUNT(*) FROM artist;
+SELECT COUNT(*) FROM genre;
+
+DELETE FROM genre WHERE genre.genre_type = "Pop";
+DELETE FROM genre WHERE genre.genre_type = "Jazz";
+
+SELECT track.track_title, album.album_name, artist.artist_name, genre.genre_type, track.track_rating, track.track_len, track.track_playCount 
+	FROM track JOIN album JOIN artist JOIN genre
+    ON album.artist_id = artist.artist_id 
+	ORDER BY album.album_name ASC;
+	
+	
+
+SELECT DISTINCT artist.artist_name, genre.genre_type 
+	FROM track JOIN album JOIN artist JOIN genre 
+    	ON track.genre_id = genre.genre_id AND track.album_id = album.album_id AND album.artist_id = artist.artist_id
+			ORDER BY artist.artist_name ;
