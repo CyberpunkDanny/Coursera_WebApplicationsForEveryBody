@@ -1,0 +1,19 @@
+CREATE DATABASE userDB DEFAULT CHARACTER SET utf8;
+
+GRANT ALL ON userDB.* TO 'cyberpunk'@'localhost' IDENTIFIED BY 'hello123';
+GRANT ALL ON userDB.* TO 'danny'@'localhost' IDENTIFIED BY 'hi123';
+
+CREATE TABLE users(
+	user_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+    user_name VARCHAR(128),
+    user_email VARCHAR(128),
+    user_password VARCHAR(128),
+    PRIMARY KEY(user_id),
+    INDEX(user_email)
+);
+
+INSERT INTO users(user_name, user_email, user_password) VALUES("Virat", "virat.kohli@bcci.co.in", "virushka");
+INSERT INTO users(user_name, user_email, user_password) VALUES("Rohit", "rohit.sharma@bcci.co.in", "rohit");
+
+DELETE FROM users WHERE user_id>2;
+ALTER TABLE users AUTO_INCREMENT = 3;
