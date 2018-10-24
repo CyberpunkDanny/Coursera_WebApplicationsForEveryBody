@@ -1,5 +1,5 @@
 <?php 
 
-	$pdo = new PDO('mysql:host=localhost;port=3306;dbname=autosess', 'cyberpunk', 'hello123');
-	$pdo->setAttribute(PDO::ATTRMODE_WARNING, PDO::ERRMODE_EXCEPTION);
+	$pdo = new PDO('mysql:host=localhost;port=3306;dbname=autos', 'cyberpunk', 'hello123');
+	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 ?>

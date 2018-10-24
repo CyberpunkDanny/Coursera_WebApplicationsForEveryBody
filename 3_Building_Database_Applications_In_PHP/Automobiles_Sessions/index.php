@@ -1,5 +1,9 @@
 <?php
-
+	session_start();
+	require_once "pdo.php";
+	echo "<p>";
+	//var_dump($_SESSION);
+	echo "</p>";
 ?>	
 
 <html lang="en">
