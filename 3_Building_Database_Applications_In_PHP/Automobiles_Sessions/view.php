@@ -15,15 +15,22 @@
 	</head>
 	
 	<body>
-	<h3>Tracking Automobiles for <?php if(isset($_SESSION["account"])) echo $_SESSION["account"];?></h3>
+	<h3>Tracking Automobiles for <?php if(isset($_SESSION["account"])) echo htmlentities($_SESSION["account"]);?></h3>
 	<?php 
+	
+		if(isset($_SESSION["successInsert"]))
+		{
+			echo "<p style='color:green'>".$_SESSION["successInsert"]."</p>";
+			unset($_SESSION["successInsert"]);
+		}
 		$sql = "SELECT * FROM autos";
 		$stmt = $pdo->query($sql);
 		echo "<h2>Automobiles</h2>";
 		echo "<ul>";
 		while($row = $stmt->fetch(PDO::FETCH_ASSOC))
 		{
-			echo "<li>".$row["auto_year"]." ".$row["auto_mileage"]." ".$row["auto_make"]."</li>";
+			echo "<li>".htmlentities($row['auto_year'])." ".htmlentities($row['auto_make'])." / ".
+						htmlentities($row['auto_mileage'])."</li>" ;
 		}
 		echo "</ul>";
 	?>

@@ -8,9 +8,18 @@
 		{
 			unset($_SESSION["account"]);
 			
+			if(strpos($_POST["username"], "@") === FALSE)
+			{
+				$_SESSION["error"] = "Username must be an email";
+				error_log("Login fail as username is not an email: ".$_POST['email']);
+				header("Location: login.php");
+				return;
+			}
+			
 			if(strlen($_POST["username"])<1 || strlen($_POST["userpwd"])<1)
 			{
 				$_SESSION["error"] = "Please fill in all the fields";
+				error_log("Login failed as all the fields are not filled: ".$_POST['email']." $userPwdHash");
 				header("Location: login.php");
 				return;
 			}
@@ -21,12 +30,14 @@
 			{
 				$_SESSION["success"] = "You're successfully logged in";
 				$_SESSION["account"] = $_POST["username"];
+				error_log("Login success: ".$_POST['email']);
 				header("Location: view.php");
 				return;
 			}
 			else
 			{
 				$_SESSION["error"] = "Incorrect Password";
+				error_log("Login failed due to wrong password: ".$_POST['email']." $userPwdHash");
 				header("Location: login.php");
 				return;
 			}

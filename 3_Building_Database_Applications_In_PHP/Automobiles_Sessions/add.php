@@ -30,7 +30,7 @@
 					)
 				);
 				$_SESSION["successInsert"] = "Record inserted successfully";
-				header("Location: add.php");
+				header("Location: view.php");
 				return;
 			}
 			else
@@ -51,7 +51,7 @@
 	</head>
 	
 	<body>
-	<h3>Tracking Automobiles for <?php if(isset($_SESSION["account"])) echo $_SESSION["account"];?></h3>
+	<h3>Tracking Automobiles for <?php if(isset($_SESSION["account"])) echo htmlentities($_SESSION["account"]);?></h3>
 	<?php
 		echo "<pre>";
 		//var_dump($_SESSION);
@@ -61,11 +61,7 @@
 			echo "<p style='color:red'>".$_SESSION["addNewError"]."</p>";
 			unset($_SESSION["addNewError"]);
 		}
-		if(isset($_SESSION["successInsert"]))
-		{
-			echo "<p style='color:green'>".$_SESSION["successInsert"]."</p>";
-			unset($_SESSION["successInsert"]);
-		}
+		
 	?>
 	<form method="post">
 		<p>Make:<input type="text" name="make" value=""/></p>
