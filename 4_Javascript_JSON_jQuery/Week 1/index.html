@@ -1,30 +1,107 @@
 <!DOCTYPE html>
 
-<html>
-	<head></head>
-	<body>
-		<script type="text/javascript">
-			document.write("Hello World");
-			x=123;
-			function check(){
-				var x=456;		//If 'var' isn't used, global variable will be changed 
-			}
-			check();
-			console.log("x="+x);
-		</script>
-		<p><a href="http://www.google.com" onclick="alert('Hi'); return false;">Click Me!</a></p>
-		<p>Hello <b><span id="person">Chuck</span></b></p>
-		<script>
-			console.dir(document.getElementById("person"));
-			st = document.getElementById('person').innerHTML;
-			console.log("Person: "+st);
-			alert("Hi "+st);
-			document.getElementById('person').innerHTML = "Danny";
-		</script>
-		<p>
-			<a href="#" onclick="document.getElementById('stuff').innerHTML = 'BACK'; return false;">BACK </a>
-			<a href="#" onclick="document.getElementById('stuff').innerHTML = 'FORTH'; return false;">FORTH</a>
-		</p>
-		<p>Hello <span id="stuff">Stuff</span></p>
-	</body>
+<html lang="en">
+
+<head>
+	<title>Gorgeous JS</title>
+</head>
+
+<body>
+	<script type="text/javascript">
+	//1
+	document.write("<h2>Lorem Ipsum</h2>");
+	</script>
+
+	<p>Clicking here won't take you to 
+	<!-- 2 -->
+		<a href="https://www.google.com/" onclick="alert('Oops!!'); return false;">Google</a>
+	</p>
+	
+	<script type="text/javascript">
+		//3
+		x=12;
+		y="Hello "+12+" people";
+		x1=10+"123";
+		x2=("123"*1)+10;
+		x3="fred"*1;
+		x4="Fred"+1;
+		console.log("STRING CONCATENATION AND VARIABLE TYPING");
+		console.log(y+"\n"+x1+"\n"+x2+"\n"+x3+"\n"+x4);
+		console.log(typeof(y)+"\n"+typeof(x1)+"\n"+typeof(x2));
+		
+		//4
+		function product(a,b)
+		{
+			return a*b;
+		}
+		console.log("PRODUCT: "+product(3,6));
+		
+		//5
+		z1=123;
+		z2=1234;
+		function check()
+		{
+			z1=456;
+			var z2=5678;
+		}
+		check();
+		console.log("RESTRICTING VARIABLE SCOPE");
+		console.log("Z1 and Z2: "+z1 +" "+z2);
+		
+		//6
+		firstArr = Array();
+		firstArr.push("One");
+		firstArr.push("Two");
+		firstArr.push("Three");
+		console.log("LINEAR ARRAY");	
+		for(i in firstArr)
+		{
+			console.log(i+" "+firstArr[i]);
+		}
+		secondArr = Array();
+		secondArr["name"]="chuck";
+		secondArr["course"]="php";
+		console.log("ASSOCIATIVE ARRAY");	
+		for(k in secondArr)
+		{
+			console.log(k+"=>"+secondArr[k]);
+		}
+	</script>
+		<!-- 7 -->
+	<p><b>Hello <span id="person">Chuck</span></b></p>
+	<script type="text/javascript">
+		console.dir(document.getElementById("person"));
+		personName = document.getElementById("person").innerHTML;
+		alert("Hi Chuck! Press OK and see your name changed");
+		document.getElementById("person").innerHTML = "Chuck Severance";
+	</script>
+	
+		<!-- 8 -->
+	<p id="toggleText">Toggle Text</p>
+	<p><a href="#" onclick="document.getElementById('toggleText').innerHTML = 'RED'; 
+						document.getElementById('toggleText').style = 'color:red'; return false;">RED<a/>
+		<a href="#" onclick="document.getElementById('toggleText').innerHTML = 'GREEN'; 
+						document.getElementById('toggleText').style = 'color:green'; return false;">GREEN<a/></p>						
+
+		<!-- 9 -->
+	<p><a href="#" onclick="add(); return false;">Add</a></p>
+	<ul id="itemList">
+		<li>Counter is 0</li>
+	</ul>
+	<script type="text/javascript">
+		console.dir(document.getElementById("itemList"));
+		var counter = 1;
+		function add()
+		{
+			var x = document.createElement('li');
+			console.dir(x);
+			//x.className = "list-item";
+			x.innerHTML = "Counter is "+counter;
+			document.getElementById("itemList").appendChild(x);
+			counter++;
+		} 
+	</script>
+	
+</body>
+
 </html>
