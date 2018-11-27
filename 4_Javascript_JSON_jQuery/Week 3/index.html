@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+	<title>Gorgeous jQuery</title>
+	<meta charset="utf8" />
+</head>
+
+<body>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready( function(){
+			alert("jQuery wXh: "+$(window).width()+" "+$(window).height());
+		});
+		$(window).resize(function(){
+			var width = $(window).width();
+			var height = $(window).height();			
+			if(width>1500 && height>850)
+				$('#para').css('color', 'red');//document.getElementById("para").style.color = "red";
+			else if(width>1500 && height>700)
+				$('#para').css('color', 'green');//document.getElementById("para").style.color = "green";		
+			else if(width>1000 && height>500)
+				$('#para').css('color', 'blue');//document.getElementById("para").style.color = "blue";
+			else 	
+				$('#para').css('color', 'yellow');//document.getElementById("para").style.color = "yellow";
+		});
+		$('#showImg').click(function(){
+			$('#LMS').toggle();
+			$('#showImg').html('Hide Image');
+		});
+	</script>
+	<p id="para">Hi! I can change colors. Don't believe? Try resizing window.</p>
+	
+	<a href="#" id="showImg" onclick="$('#LMS').toggle(); $('#para').css('color','cyan'); return false;">Click Me</a>
+	
+	<!--<a href="#" id="showImg">Show Image</a>-->
+	<p><img id="LMS" src="lms.png" width="30%" style="display:none;"/></p>
+</body>
+
+</html>
