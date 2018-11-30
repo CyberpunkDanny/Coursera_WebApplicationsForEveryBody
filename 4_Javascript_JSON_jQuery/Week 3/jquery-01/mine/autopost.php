@@ -15,8 +15,11 @@
 	<hr/>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
 	</script>
+	<script type="text/javascript" src="jquery.min.js">
+	</script>	
+
 	<script type="text/javascript">
-		$('#target').change(function(event){
+		$('#target').change(function(){
 			$('#spinner').show();
 			//var form = $('#target');
 			var txt = $('#target').find('input[name="one"]').val();
